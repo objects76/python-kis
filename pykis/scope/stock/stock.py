@@ -49,7 +49,8 @@ class KisStockScope(KisScopeBase):
 
     from .api import price, price_daily, period_price, overtime_price_daily, \
         asking_price, conclude, day_conclude, overtime_conclude, elw_price, \
-        investor, member
+        investor, member, \
+        program_trade
 
     def rt_add(self, id: RT_CODE_TYPE, timeout: int = 10) -> KisRTSysResponse | None:
         '''실시간 응답을 등록합니다.
@@ -61,7 +62,7 @@ class KisStockScope(KisScopeBase):
             Exception: 이미 등록된 코드입니다.
         '''
         return self.rtclient.add(id, self.code, timeout=timeout)
-        
+
     def rt_remove(self, id: RT_CODE_TYPE, timeout: int = 10) -> KisRTSysResponse | None:
         '''실시간 응답을 해제합니다.
 
@@ -73,5 +74,5 @@ class KisStockScope(KisScopeBase):
         Returns:
             KisRTSysResponse: 등록 해제 응답.
             None: 이미 등록 해제 되어 있습니다
-        '''    
+        '''
         return self.rtclient.remove(id, self.code, timeout=timeout)
